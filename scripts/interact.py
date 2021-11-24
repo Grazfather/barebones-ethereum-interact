@@ -56,10 +56,10 @@ def deploy():
 def query():
     try:
         target_contract = Contract.from_abi("TargetContract", TARGET_ADDRESS, Target.abi)
-        print("Contract address:\t", TARGET_ADDRESS)
-        print("Contract balance:\t", target_contract.balance())
+        print("Target address:\t", TARGET_ADDRESS)
+        print("Target balance:\t", target_contract.balance())
     except brownie.exceptions.ContractNotFound:
-        print("Contract not found at address", TARGET_ADDRESS)
+        print("Target contract not found at address", TARGET_ADDRESS)
     except ValueError:
         pass
 
