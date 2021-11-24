@@ -31,12 +31,12 @@ else:
 
 OWNER_PUBLIC_KEY = os.getenv("OWNER_PUBLIC_KEY")
 if OWNER_PUBLIC_KEY is not None:
-    ctf_account = accounts.at(OWNER_PUBLIC_KEY, force=True)
+    owner_account = accounts.at(OWNER_PUBLIC_KEY, force=True)
 else:
-    ctf_account = accounts[0]
+    owner_account = accounts[0]
 
 print("Using my account at", my_account)
-print("Using CTF account at", ctf_account)
+print("Using owner account at", owner_account)
 print("Using Target contract at", TARGET_ADDRESS)
 print("Using Attacker contract account at", ATTACKER_ADDRESS)
 
@@ -46,7 +46,7 @@ def deploy_attacker(target):
 
 
 def deploy_target():
-    return Target.deploy(ctf_account, my_account, {"from": ctf_account})
+    return Target.deploy(owner_account, my_account, {"from": owner_account})
 
 
 def deploy():
