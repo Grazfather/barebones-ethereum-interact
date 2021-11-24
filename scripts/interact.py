@@ -29,9 +29,9 @@ if PRIVATE_KEY is not None:
 else:
     my_account = accounts[-1]
 
-OWNER_PUBLIC_KEY = os.getenv("OWNER_PUBLIC_KEY")
-if OWNER_PUBLIC_KEY is not None:
-    owner_account = accounts.at(OWNER_PUBLIC_KEY, force=True)
+OWNER_ADDRESS = os.getenv("OWNER_ADDRESS")
+if OWNER_ADDRESS is not None:
+    owner_account = accounts.at(OWNER_ADDRESS, force=True)
 else:
     owner_account = accounts[0]
 
@@ -50,8 +50,9 @@ def deploy_target():
 
 
 def deploy():
-	target = deploy_target()
-	deploy_attacker(target)
+    target = deploy_target()
+    deploy_attacker(target)
+
 
 def query():
     try:
